@@ -1861,3 +1861,13 @@ flex-direction: column;
 h2{
 	margin: 0%;
 }
+
+/* ==========================================
+   Hide Download Button
+   隐藏下载按钮
+   Users can still right-click to save files
+   用户仍可右键保存文件
+   ========================================== */
+.file-download-btn {
+	display: none !important;
+}

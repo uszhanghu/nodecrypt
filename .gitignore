@@ -50,3 +50,11 @@ client/build/
 coverage/
 dist/
 新增功能.md
+
+# Backup files
+*.backup
+client/css/style.css.backup
+client/js/chat.js.backup
+
+# Internal documentation (not for GitHub)
+hide_download_button.md
