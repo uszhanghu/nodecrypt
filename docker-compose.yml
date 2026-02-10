@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  nodecrypt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nodecrypt
+    ports:
+      - "8080:80"  # 映射到主机的 8080 端口，可以根据需要修改
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    # 资源限制（可选，根据您的 VPS 配置调整）
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

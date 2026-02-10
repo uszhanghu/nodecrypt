@@ -1,0 +1,31 @@
+# Node modules
+node_modules/
+npm-debug.log
+
+# Build output
+dist/
+
+# Git
+.git/
+.gitignore
+.github/
+
+# Wrangler (Cloudflare Workers)
+.wrangler/
+wrangler.toml
+
+# Development files
+*.log
+.DS_Store
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation (optional, 如果想包含文档可以删除这两行)
+README.md
+README_EN.md

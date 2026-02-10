@@ -1,0 +1,68 @@
+﻿
+/* ==========================================
+   Media Preview Styles for Images and Videos
+   图片和视频媒体预览样式
+   ========================================== */
+
+/* Media preview container */
+.file-media-preview {
+	margin-bottom: 12px;
+	border-radius: 8px;
+	overflow: hidden;
+	background: rgba(0, 0, 0, 0.02);
+	max-width: 100%;
+}
+
+/* Image preview styles */
+.file-preview-image {
+	max-width: 100%;
+	max-height: 300px;
+	width: auto;
+	height: auto;
+	display: block;
+	cursor: pointer;
+	border-radius: 8px;
+	transition: transform 0.2s ease, opacity 0.2s ease;
+	object-fit: contain;
+}
+
+.file-preview-image:hover {
+	transform: scale(1.02);
+	opacity: 0.95;
+}
+
+/* Video preview styles */
+.file-preview-video {
+	max-width: 100%;
+	max-height: 400px;
+	width: 100%;
+	border-radius: 8px;
+	background: #000;
+	display: block;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+	.file-preview-image {
+		max-height: 200px;
+	}
+	
+	.file-preview-video {
+		max-height: 250px;
+	}
+	
+	.file-media-preview {
+		margin-bottom: 8px;
+	}
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) and (min-width: 769px) {
+	.file-preview-image {
+		max-height: 250px;
+	}
+	
+	.file-preview-video {
+		max-height: 300px;
+	}
+}
