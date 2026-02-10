@@ -40,13 +40,19 @@
 
 > 本项目已内置自动同步 workflow，fork 后无需任何操作，主仓库的更新会自动同步到你的 fork 仓库，Cloudflare 也会自动重新部署，无需手动维护。
 
-### 方法三：Docker 一键部署（不稳定，不建议）
+### 方法三：Docker Compose 部署
+
+使用 Docker Compose 快速部署（推荐用于 VPS 部署）：
 
 ```bash
-docker run -d --name nodecrypt -p 80:80 ghcr.io/shuaiplus/nodecrypt
+git clone https://github.com/uszhanghu/nodecrypt.git
+cd nodecrypt
+docker-compose up -d
 ```
 
-！ 必须开启HTTPS，不然传输密钥会失败，导致无法进入房间。
+详细说明请参考：[DOCKER_DEPLOY.md](DOCKER_DEPLOY.md)
+
+> ⚠️ 必须开启 HTTPS，不然传输密钥会失败，导致无法进入房间。
 
 ### 方法四：本地开发部署
 克隆项目并安装依赖后，使用 `npm run dev` 启动开发服务器。
