@@ -8,30 +8,14 @@
 
 ## ✨ 本 Fork 版本的增强功能
 
-本版本在原项目基础上添加了以下功能：
-
 ### 🖼️ 媒体预览支持
 - ✅ **图片预览**：在聊天界面中直接显示图片缩略图
   - 支持格式：JPG, PNG, GIF, WebP, BMP, SVG
-  - 点击可查看原图
   - 响应式设计，自动适配移动端
 - ✅ **视频播放**：内置视频播放器
   - 支持格式：MP4, WebM, OGG, MOV
   - 支持播放控制（播放/暂停、音量、全屏）
 - ✅ **双向预览**：发送方和接收方都能看到媒体预览
-
-### 🐳 Docker 部署支持
-- ✅ Docker Compose 一键部署配置
-- ✅ 多阶段构建优化镜像大小
-- ✅ 详细的部署文档（[DOCKER_DEPLOY.md](DOCKER_DEPLOY.md)）
-
-### 🚀 GitHub Actions 自动部署
-- ✅ 推送到 main 分支自动部署到 Cloudflare Workers
-- ✅ 完整的 CI/CD 工作流
-
-### 📚 文档增强
-- ✅ GitHub 和 Cloudflare 部署指南（[GITHUB_CLOUDFLARE_DEPLOY.md](GITHUB_CLOUDFLARE_DEPLOY.md)）
-- ✅ Docker 部署指南（[DOCKER_DEPLOY.md](DOCKER_DEPLOY.md)）
 
 ---
 
