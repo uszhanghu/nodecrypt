@@ -192,11 +192,7 @@ sequenceDiagram
 
 本项目仅供学习和技术研究使用，不得用于任何违法犯罪活动。使用者应遵守所在国家和地区的相关法律法规。项目作者不承担因使用本软件而产生的任何法律责任。请在合法合规的前提下使用本项目。
 
----
-## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=shuaiplus/NodeCrypt&type=Timeline)](https://www.star-history.com/#shuaiplus/NodeCrypt&Timeline)
-
-**NodeCrypt** - 真正的端到端加密通信 🔐
+**NodeCrypt Enhanced** - 真正的端到端加密通信 🔐
 
 *"在数字时代，加密是保护隐私的最后一道防线"*
