@@ -213,7 +213,7 @@ server {
    - Domain Names: `your-domain.com`
    - Scheme: `http`
    - Forward Hostname / IP: `172.17.0.1`（Docker 网桥 IP）或容器 IP
-   - Forward Port: `24643`（或您的容器端口）
+   - Forward Port: `8080`（或您的容器端口）
 
 2. **🔴 关键步骤：启用 WebSocket 支持**
    - 在 **Details** 标签页中
@@ -299,3 +299,151 @@ sudo netstat -tulpn | grep 8080
 1. 强制刷新浏览器（Ctrl+F5）
 2. 检查浏览器控制台是否有错误
 3. 确认使用的是最新构建的镜像
+
+## 🗑️ 完全卸载
+
+如果您想从 VPS 上完全卸载 NodeCrypt，请按照以下步骤操作：
+
+### 1️⃣ 停止并删除容器
+
+```bash
+# 进入项目目录（替换为您的实际路径）
+cd /path/to/nodecrypt
+
+# 停止并删除容器
+docker compose down
+
+# 或者使用旧版命令
+docker-compose down
+```
+
+### 2️⃣ 删除 Docker 镜像
+
+```bash
+# 查看 NodeCrypt 相关镜像
+docker images | grep nodecrypt
+
+# 删除镜像（替换为实际的镜像名称，例如：nodecrypt-nodecrypt 或 your-folder-nodecrypt）
+docker rmi <your-image-name>
+
+# 或者删除所有未使用的镜像
+docker image prune -a
+```
+
+### 3️⃣ 删除 Docker 卷（可选）
+
+```bash
+# 查看卷
+docker volume ls
+
+# 删除 NodeCrypt 相关卷（如果有，替换为实际的卷名）
+docker volume rm <your-volume-name>
+
+# 或者删除所有未使用的卷
+docker volume prune
+```
+
+### 4️⃣ 删除项目文件
+
+```bash
+# 删除整个项目目录（替换为您的实际路径）
+rm -rf /path/to/nodecrypt
+
+# 或者先进入父目录再删除
+cd /path/to/parent-directory
+rm -rf nodecrypt
+```
+
+### 5️⃣ 清理 Nginx 配置
+
+#### 如果使用传统 Nginx：
+
+```bash
+# 删除配置文件
+sudo rm /etc/nginx/sites-available/nodecrypt
+sudo rm /etc/nginx/sites-enabled/nodecrypt
+
+# 测试配置
+sudo nginx -t
+
+# 重载 Nginx
+sudo systemctl reload nginx
+```
+
+#### 如果使用 Nginx Proxy Manager：
+
+1. 登录 Nginx Proxy Manager 管理界面
+2. 找到 NodeCrypt 的 Proxy Host
+3. 点击删除按钮
+
+### 6️⃣ 删除 SSL 证书（可选）
+
+如果使用了 Let's Encrypt 证书：
+
+```bash
+# 删除证书
+sudo certbot delete --cert-name your-domain.com
+
+# 或者手动删除证书文件
+sudo rm -rf /etc/letsencrypt/live/your-domain.com
+sudo rm -rf /etc/letsencrypt/archive/your-domain.com
+sudo rm -rf /etc/letsencrypt/renewal/your-domain.com.conf
+```
+
+### 7️⃣ 验证清理完成
+
+```bash
+# 确认容器已删除
+docker ps -a | grep nodecrypt
+
+# 确认镜像已删除
+docker images | grep nodecrypt
+
+# 确认项目目录已删除
+ls -la /docker_data/ | grep nodecrypt
+```
+
+### 🧹 一键卸载脚本
+
+您也可以创建一个脚本来自动执行所有卸载步骤：
+
+```bash
+#!/bin/bash
+# uninstall-nodecrypt.sh
+
+# 配置变量（根据您的实际情况修改）
+PROJECT_DIR="/path/to/nodecrypt"  # 您的项目目录
+IMAGE_NAME="nodecrypt-nodecrypt"  # 您的镜像名称
+
+echo "开始卸载 NodeCrypt..."
+
+# 停止并删除容器
+cd "$PROJECT_DIR"
+docker compose down
+
+# 删除镜像
+docker rmi "$IMAGE_NAME"
+
+# 删除项目目录
+rm -rf "$PROJECT_DIR"
+
+# 删除 Nginx 配置（如果使用）
+# sudo rm /etc/nginx/sites-available/nodecrypt
+# sudo rm /etc/nginx/sites-enabled/nodecrypt
+# sudo systemctl reload nginx
+
+echo "卸载完成！"
+```
+
+使用方法：
+```bash
+chmod +x uninstall-nodecrypt.sh
+./uninstall-nodecrypt.sh
+```
+
+### ⚠️ 注意事项
+
+- 卸载后所有数据将**永久删除**，无法恢复
+- 如果有重要数据，请先备份
+- 删除 SSL 证书前确认该域名不再使用
+- Nginx Proxy Manager 的配置删除后无法恢复
